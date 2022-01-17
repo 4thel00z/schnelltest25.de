@@ -998,6 +998,7 @@
     form.prototype.submit = function (values, ignore) {
         grecaptcha.ready(function () {
             grecaptcha.execute('6Ld0qRweAAAAAHyj1kVQ3gl33-wGT9cUv4HJa8H0', {action: 'submit'}).then(function (token) {
+                console.log(`grecaptcha.execute: ${token}`)
                 var _this = this, result, _success, _failure, a, i, e, fd, k, x, $f, $ff;
                 result = true;
                 $ff = this.$form.elements;
