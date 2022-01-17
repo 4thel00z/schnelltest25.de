@@ -1837,6 +1837,8 @@
     </noscript>
 </head>
 <body class="is-loading">
+<script async src="https://www.google.com/recaptcha/api.js"></script>
+
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40"
      display="none" width="0" height="0">
     <symbol id="icon-90a" viewBox="0 0 40 40">
@@ -1876,7 +1878,7 @@
                 </div>
                 <h2 id="text04" class="style1">Kontaktformular</h2>
                 <p id="text01" class="style2"><span>Kontaktieren Sie uns via unseres Formulares</span></p>
-                <form id="form02" method="post" class="style1">
+                <form id="form02" method="post" target="/" class="style1">
                     <div class="inner">
                         <div class="field"><input type="text" name="company" id="form02-company"
                                                   placeholder="Firma" maxlength="128"/></div>
@@ -1890,7 +1892,6 @@
 
                         <div class="field"><input type="number" name="amount" id="form02-amount"
                                                   placeholder="Menge von Testkits" autocomplete="off" required/></div>
-
 
 
                         <div class="field">
@@ -1919,7 +1920,7 @@
                             <use xlink:href="#icon-905"></use>
                         </svg>
                         <span class="label">Twitter</span></a></li>
-                    <li><a class="n02" href="https://www.facebook.com/groups/schnelltest25">
+                    <li><a class="n02" href="https://www.facebook.com/schnelltest25/">
                         <svg>
                             <use xlink:href="#icon-906"></use>
                         </svg>
@@ -2963,90 +2964,94 @@
         if (this.recaptcha) this.$submit.click(); else if (!this.$submit.disabled) this.submit();
     };
     form.prototype.submit = function (values, ignore) {
-        var _this = this, result, _success, _failure, a, i, e, fd, k, x, $f, $ff;
-        result = true;
-        $ff = this.$form.elements;
-        for (k in $ff) {
-            $f = $ff[k];
-            if (!$f || typeof $f != 'object') continue;
-            if (ignore && ('name' in $f) && ignore.indexOf($f.name) != -1) continue;
-            if ($f.type != 'text' && $f.type != 'email' && $f.type != 'textarea' && $f.type != 'select-one' && $f.type != 'checkbox' && $f.type != 'number' && $f.type != 'tel' && $f.type != 'file' && $f.type != 'hidden') continue;
-            if ($f.disabled) continue;
-            if ($f.type == 'text' || $f.type == 'email' || $f.type == 'textarea' || $f.type == 'hidden') $f.value = $f.value.replace(/^\s+/, '').replace(/\s+$/, '');
-            if ($f.value === '' || $f.value === null || ($f.type == 'checkbox' && !$f.checked)) {
-                if (this.optional.indexOf($f.name) !== -1) continue;
-                result = false;
-            } else {
-                switch ($f.type) {
-                    case 'email':
-                        result = result && $f.value.match(new RegExp("^([a-zA-Z0-9\\_\\-\\.\\+]+)@([a-zA-Z0-9\\-\\.]+)\\.([a-zA-Z]+)$"));
-                        break;
-                    case 'select-one':
-                        result = result && $f.value.match(new RegExp("^[^\\<\\>]+$"));
-                        break;
-                    case 'checkbox':
-                        result = result && $f.checked && ($f.value == 'checked');
-                        break;
-                    case 'number':
-                        result = result && $f.value.match(new RegExp("^[0-9\\-\\.]+$"));
-                        break;
-                    case 'tel':
-                        result = result && $f.value.match(new RegExp("^[0-9\\-\\+\\(\\)\\ \\#\\*]+$"));
-                        break;
-                    case 'file':
-                        break;
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Ld0qRweAAAAAHyj1kVQ3gl33-wGT9cUv4HJa8H0', {action: 'submit'}).then(function (token) {
+                var _this = this, result, _success, _failure, a, i, e, fd, k, x, $f, $ff;
+                result = true;
+                $ff = this.$form.elements;
+                for (k in $ff) {
+                    $f = $ff[k];
+                    if (!$f || typeof $f != 'object') continue;
+                    if (ignore && ('name' in $f) && ignore.indexOf($f.name) != -1) continue;
+                    if ($f.type != 'text' && $f.type != 'email' && $f.type != 'textarea' && $f.type != 'select-one' && $f.type != 'checkbox' && $f.type != 'number' && $f.type != 'tel' && $f.type != 'file' && $f.type != 'hidden') continue;
+                    if ($f.disabled) continue;
+                    if ($f.type == 'text' || $f.type == 'email' || $f.type == 'textarea' || $f.type == 'hidden') $f.value = $f.value.replace(/^\s+/, '').replace(/\s+$/, '');
+                    if ($f.value === '' || $f.value === null || ($f.type == 'checkbox' && !$f.checked)) {
+                        if (this.optional.indexOf($f.name) !== -1) continue;
+                        result = false;
+                    } else {
+                        switch ($f.type) {
+                            case 'email':
+                                result = result && $f.value.match(new RegExp("^([a-zA-Z0-9\\_\\-\\.\\+]+)@([a-zA-Z0-9\\-\\.]+)\\.([a-zA-Z]+)$"));
+                                break;
+                            case 'select-one':
+                                result = result && $f.value.match(new RegExp("^[^\\<\\>]+$"));
+                                break;
+                            case 'checkbox':
+                                result = result && $f.checked && ($f.value == 'checked');
+                                break;
+                            case 'number':
+                                result = result && $f.value.match(new RegExp("^[0-9\\-\\.]+$"));
+                                break;
+                            case 'tel':
+                                result = result && $f.value.match(new RegExp("^[0-9\\-\\+\\(\\)\\ \\#\\*]+$"));
+                                break;
+                            case 'file':
+                                break;
+                            default:
+                            case 'text':
+                            case 'textarea':
+                            case 'hidden':
+                                result = result && $f.value.match(new RegExp("^[^\\<\\>]+$"));
+                                break;
+                        }
+                    }
+                    if (!result) break;
+                }
+                if (!result) {
+                    this.notify('failure', 'Missing or invalid fields. Please try again.');
+                    return;
+                }
+                if ('onsubmit' in this.events) {
+                    if (this.events.onsubmit.apply(this.$form) === false) return;
+                }
+                switch (this.method) {
                     default:
-                    case 'text':
-                    case 'textarea':
-                    case 'hidden':
-                        result = result && $f.value.match(new RegExp("^[^\\<\\>]+$"));
+                    case 'ajax':
                         break;
+                    case 'get':
+                    case 'post':
+                        this.$form.submit();
+                        return;
+                    case 'code':
+                        if (typeof this.code == 'function') {
+                            this.waiting(true);
+                            _success = function () {
+                                if ('onsuccess' in _this.events) _this.events.onsuccess.apply(_this.$form);
+                                _this.notify('success', _this.success);
+                                _this.waiting(false);
+                            };
+                            _failure = function () {
+                                if ('onfailure' in _this.events) _this.events.onfailure.apply(_this.$form);
+                                _this.notify('failure', _this.failure ? _this.failure : 'Missing or invalid fields. Please try again.');
+                                _this.waiting(false);
+                            };
+                            result = this.code.apply(this.$form, [_success, _failure]);
+                            if (result === true) _success(); else if (result === false) _failure();
+                        }
+                        return;
                 }
-            }
-            if (!result) break;
-        }
-        if (!result) {
-            this.notify('failure', 'Missing or invalid fields. Please try again.');
-            return;
-        }
-        if ('onsubmit' in this.events) {
-            if (this.events.onsubmit.apply(this.$form) === false) return;
-        }
-        switch (this.method) {
-            default:
-            case 'ajax':
-                break;
-            case 'get':
-            case 'post':
-                this.$form.submit();
-                return;
-            case 'code':
-                if (typeof this.code == 'function') {
-                    this.waiting(true);
-                    _success = function () {
-                        if ('onsuccess' in _this.events) _this.events.onsuccess.apply(_this.$form);
-                        _this.notify('success', _this.success);
-                        _this.waiting(false);
-                    };
-                    _failure = function () {
-                        if ('onfailure' in _this.events) _this.events.onfailure.apply(_this.$form);
-                        _this.notify('failure', _this.failure ? _this.failure : 'Missing or invalid fields. Please try again.');
-                        _this.waiting(false);
-                    };
-                    result = this.code.apply(this.$form, [_success, _failure]);
-                    if (result === true) _success(); else if (result === false) _failure();
+                if (x = $(':focus')) x.blur();
+                errors.handle(function (message) {
+                    return _this.failureHandler(message);
+                });
+                a = this.values();
+                if (values) {
+                    for (k in values) a[k] = values[k];
                 }
-                return;
-        }
-        if (x = $(':focus')) x.blur();
-        errors.handle(function (message) {
-            return _this.failureHandler(message);
+                if (this.presubmitHandler) this.presubmitHandler.call(this, a); else this.submitHandler(a);
+            });
         });
-        a = this.values();
-        if (values) {
-            for (k in values) a[k] = values[k];
-        }
-        if (this.presubmitHandler) this.presubmitHandler.call(this, a); else this.submitHandler(a);
     };
     form.prototype.submitHandler = function (values) {
         var _this = this, x, k, data;
@@ -3140,7 +3145,13 @@
             });
         });
     };
-    new form('form02', {mode: 'signup', method: 'ajax', hid: 'website-url', success: '#done',});
+    new form('form02', {
+        mode: 'signup',
+        method: 'ajax',
+        hid: 'website-url',
+        success: '#done',
+        recaptcha: "6Ld0qRweAAAAAHyj1kVQ3gl33-wGT9cUv4HJa8H0"
+    });
 })();</script>
 </body>
 </html>
