@@ -838,7 +838,7 @@
             grecaptcha.ready(function () {
                 var id;
                 id = grecaptcha.render(_this.$submit, {
-                    sitekey: _this.recaptcha.key,
+                    sitekey: "6Ld0qRweAAAAAHyj1kVQ3gl33-wGT9cUv4HJa8H0", //_this.recaptcha.key,
                     isolated: true,
                     theme: (_this.recaptcha.darkMode ? 'dark' : 'light'),
                     callback: function (token) {
