@@ -29,7 +29,6 @@
     </noscript>
 </head>
 <body class="is-loading">
-<script src="https://www.google.com/recaptcha/api.js?render=6Ld0qRweAAAAAHyj1kVQ3gl33-wGT9cUv4HJa8H0"></script>
 
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 40 40"
      display="none" width="0" height="0">
@@ -74,7 +73,7 @@
                 </div>
                 <h2 id="text04" class="style1">Kontaktformular</h2>
                 <p id="text01" class="style2"><span>Kontaktieren Sie uns via unseres Formulares</span></p>
-                <form id="form02" method="post" target="/" class="style1">
+                <form id="form02" class="style1">
                     <div class="inner">
                         <div class="field"><input type="text" name="company" id="form02-company"
                                                   placeholder="Firma" maxlength="128"/></div>
@@ -104,15 +103,21 @@
 
 
                         <div class="actions">
-                            <button class="g-recaptcha"
-                                    data-sitekey="6Ld0qRweAAAAAHyj1kVQ3gl33-wGT9cUv4HJa8H0"
-                                    data-callback='onSubmit'
-                                    data-action='submit'
-                                    type="submit">Unverbindlich anfragen
+                            <button onclick="window.handleFormSubmit()" type="submit">Unverbindlich anfragen
                             </button>
                         </div>
                     </div>
                     <input type="hidden" name="id" value="form02"/></form>
+                <hr class="style1 full">
+                <h2 class="style1">Preisliste</h2>
+                <form class="style1">
+                    <div class="actions">
+                        <a href="https://drive.google.com/uc?export=download&id=1vEZn8RYLtJEw0OLc0KkdtGGu6eXOptir"
+                           target="_blank">
+                            <button  onclick="window.handleDownload()" type="submit">Download</button>
+                        </a>
+                    </div>
+                </form>
                 <hr id="divider04" class="style1 full">
                 <h2 id="text06" class="style1">Social media</h2>
                 <ul id="icons01" class="style1 icons">
@@ -144,17 +149,6 @@
                     schnelltest25.de. More <a
                             href="">here</a>
                 </p></section>
-            <section id="done-section"><h2 id="text08" class="style1">Congrats! You’re in 🎉</h2>
-                <p id="text09" class="style2">If you’re interested in priority access, share this tweet with your
-                    friends or community so they can join the waitlist too. Thanks for spreading the word 🙏</p>
-                <ul id="buttons01" class="style1 buttons">
-                    <li><a href="" class="button n01">
-                        <svg>
-                            <use xlink:href="#icon-905"></use>
-                        </svg>
-                        <span class="label">Tweet</span></a></li>
-                </ul>
-            </section>
             <footer id="footer">
                 <ul id="links01" class="links">
                     <li class="n01"><a
