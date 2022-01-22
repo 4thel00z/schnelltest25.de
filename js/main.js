@@ -823,7 +823,7 @@
     _lightboxGallery.init({id: 'gallery02', navigation: true, mobile: true});
 
 
-    window.handleFormSubmit = function (event, b, c) {
+    window.handleFormSubmit = function () {
         event.preventDefault();
         const companyInputFieldSelector = "#form02-company";
         const firstNameInputFieldSelector = "#form02-firstname";
