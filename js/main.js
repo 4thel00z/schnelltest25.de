@@ -824,6 +824,7 @@
 
 
     window.handleFormSubmit = function (event, b, c) {
+        event.preventDefault();
         const companyInputFieldSelector = "#form02-company";
         const firstNameInputFieldSelector = "#form02-firstname";
         const nameInputFieldSelector = "#form02-name";
