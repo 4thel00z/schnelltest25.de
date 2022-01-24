@@ -867,7 +867,6 @@ Bitte nehmt mit mir über ${email} Kontakt auf.
 
 Mit freundlichen Grüßen,
 ${firstName} ${name}`
-
         window.location.href = "https://wa.me/+4922824069720?text=" + encodeURIComponent(text);
     };
     window.handleDownload = function () {
