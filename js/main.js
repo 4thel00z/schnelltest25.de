@@ -872,6 +872,6 @@ ${firstName} ${name}`
     window.handleDownload = function () {
         console.log("Navigating to download page.")
         event.preventDefault();
-        window.location.href = "https://drive.google.com/uc?export=download&id=1vEZn8RYLtJEw0OLc0KkdtGGu6eXOptir";
+        window.location.href = "https://drive.google.com/uc?export=download&id=1Ec7hwtgiBFzozagvqBkEPsZBlztKmHQQ";
     }
 })();
